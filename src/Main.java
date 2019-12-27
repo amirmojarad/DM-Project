@@ -42,7 +42,7 @@ public class Main extends Application {
 
         relations.setAlignment(Pos.CENTER);
         relations.setPrefSize(150, 25);
-//        relations.setDisable(true);
+        relations.setDisable(true);
 
         //Actions
         create.setOnAction(event -> {
@@ -62,6 +62,7 @@ public class Main extends Application {
         mainBox.setSpacing(10);
         mainScene = new Scene(mainBox, 300, 200);
         mainStage.setScene(mainScene);
+        mainStage.setTitle("Sets and Relations");
         mainStage.show();
     }
 
@@ -276,7 +277,7 @@ public class Main extends Application {
 
         setsBox.getChildren().addAll(setLabel, sets, done, resultText);
         setsBox.setLayoutX(100);
-        setsBox.setLayoutY(80);
+        setsBox.setLayoutY(30);
 
         //Actions
         sets.setOnAction(event -> {
@@ -355,9 +356,17 @@ public class Main extends Application {
                 }
             }
             result = "Reflexivity = "+ reflexive +"\nSymmetry = " +symmetric;
+            resultText.setText(result);
         });
-
-        Pane pane = new Pane(setsBox);
+        Button back = new Button("Back");
+        back.setAlignment(Pos.CENTER);
+        back.setPrefSize(75, 25);
+        back.setLayoutX(10);
+        back.setLayoutY(220);
+        back.setOnAction(event -> {
+            mainStage.setScene(mainScene);
+        });
+        Pane pane = new Pane(setsBox, back);
         Scene relationScene = new Scene(pane, 400, 250);
         return relationScene;
     }
