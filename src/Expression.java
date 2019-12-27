@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Expression {
     ///Attributes
@@ -106,6 +103,52 @@ public class Expression {
         result.setSentences(result.getSet().toString());
         return result;
     }
+
+    public boolean reflexive(){
+        boolean flag = false;
+        for (HashMap.Entry<Integer, Integer> thisEntry: getSet().entrySet()) {
+            if(thisEntry.getKey().equals(thisEntry.getValue()))
+                flag = true;
+            else {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    public boolean symmetric() throws Exception{
+        boolean flag = false;
+        for (HashMap.Entry<Integer, Integer> thisEntry: getSet().entrySet()) {
+            try {
+                if (getSet().get(thisEntry.getValue()).equals(thisEntry.getKey()))
+                    flag = true;
+                else{
+                    flag = false;
+                    break;
+                }
+            }catch (Exception ex){
+                return false;
+            }
+        }
+        return flag;
+    }
+
+//    public boolean transitive(){
+//        boolean flag = false;
+//        for (HashMap.Entry<Integer, Integer> thisEntry: getSet().entrySet()) {
+//            Integer key = thisEntry.getKey();
+//            Integer value = getSet().get(thisEntry.getKey());
+//            HashMap.Entry<Integer, Integer> object = new AbstractMap.SimpleEntry<>(key, value) ;
+//            if(getSet().entrySet().contains(object))
+//                flag = true;
+//            else{
+//                flag = false;
+//                break;
+//            }
+//        }
+//        return flag;
+//    }
 
     @Override
     public String toString() {
