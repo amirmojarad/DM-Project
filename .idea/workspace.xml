@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="7ad4ac6a-3be3-4f70-ad38-4ec0e14bcdf2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project_No.02_DM/Expression.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project_No.02_DM/Expression.class" afterDir="false" />
@@ -8,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/src/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Expression.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
+=======
+    <list default="true" id="7ad4ac6a-3be3-4f70-ad38-4ec0e14bcdf2" name="Default Changelist" comment="" />
+>>>>>>> GUI
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +76,8 @@
       <updated>1577360797752</updated>
       <workItem from="1577360801794" duration="3331000" />
       <workItem from="1577365264759" duration="146000" />
-      <workItem from="1577365504170" duration="3930000" />
+      <workItem from="1577365504170" duration="10973000" />
+      <workItem from="1577427064441" duration="2566000" />
     </task>
     <servers />
   </component>
