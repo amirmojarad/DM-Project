@@ -134,22 +134,6 @@ public class Expression {
         return flag;
     }
 
-//    public boolean transitive(){
-//        boolean flag = false;
-//        for (HashMap.Entry<Integer, Integer> thisEntry: getSet().entrySet()) {
-//            Integer key = thisEntry.getKey();
-//            Integer value = getSet().get(thisEntry.getKey());
-//            HashMap.Entry<Integer, Integer> object = new AbstractMap.SimpleEntry<>(key, value) ;
-//            if(getSet().entrySet().contains(object))
-//                flag = true;
-//            else{
-//                flag = false;
-//                break;
-//            }
-//        }
-//        return flag;
-//    }
-
     @Override
     public String toString() {
         return getSet().toString();

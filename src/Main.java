@@ -11,24 +11,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-
-
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-<<<<<<< HEAD
-public class Main {
-    public static void main(String[] args) throws Exception {
-        Expression expression = new Expression("(1,2),(2,1),(3,8),(4,3),(8,2)");
-        System.out.println(expression.symmetric());
-=======
 public class Main extends Application {
     Expression a;
     Expression b;
+    Expression resultExp;
+    String result;
+    boolean reflexive = false;
+    boolean symmetric = false;
     Insets insets = new Insets(10, 10, 10, 10);
     Button evaluate = new Button("Evaluate");
     Button create = new Button("Create Sets");
@@ -251,7 +240,7 @@ public class Main extends Application {
     private Scene relationScene() {
         Expression first;
         Expression second;
-        String result;
+
         Label setLabel = new Label("Choose a Set");
         setLabel.setAlignment(Pos.TOP_CENTER);
 
@@ -297,28 +286,79 @@ public class Main extends Application {
 
         done.setOnAction(event -> {
             if (sets.getValue().equals("A")) {
-
+                reflexive = a.reflexive();
+                try {
+                    symmetric = a.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("B")) {
-
+                reflexive = b.reflexive();
+                try {
+                    symmetric = b.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("A intersection B")) {
-
+                resultExp = a.intersection(b);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = a.intersection(b);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("A union B")) {
-
+                resultExp = a.union(b);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = a.union(b);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("A subtract B")) {
-
+                resultExp = a.difference(b);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = a.difference(b);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("B intersection A")) {
-
+                resultExp = b.intersection(a);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = b.intersection(a);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("B union A")) {
-
+                resultExp = b.union(a);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = b.union(a);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             } else if (sets.getValue().equals("B subtract A")) {
-
+                resultExp = b.difference(a);
+                reflexive = resultExp.reflexive();
+                try {
+                    resultExp = b.difference(a);
+                    symmetric = resultExp.symmetric();
+                } catch (Exception e) {
+                    symmetric = false;
+                }
             }
-
+            result = "Reflexivity = "+ reflexive +"\nSymmetry = " +symmetric;
         });
 
         Pane pane = new Pane(setsBox);
         Scene relationScene = new Scene(pane, 400, 250);
         return relationScene;
->>>>>>> GUI
     }
 }
