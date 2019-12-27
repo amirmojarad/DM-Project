@@ -19,6 +19,9 @@ public class Main extends Application {
     Expression a;
     Expression b;
     Insets insets = new Insets(10, 10, 10, 10);
+    Button evaluate = new Button("Evaluate");
+    Button create = new Button("Create Sets");
+    Button relations = new Button("Relations");
     Stage mainStage;
     Scene mainScene;
 
@@ -30,25 +33,30 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         mainStage = primaryStage;
         //Components
-        Button create = new Button("Create Sets");
         create.setAlignment(Pos.CENTER);
         create.setPrefSize(150, 25);
 
-        Button evaluate = new Button("Evaluate");
         evaluate.setAlignment(Pos.CENTER);
         evaluate.setPrefSize(150, 25);
-        evaluate.setDisable(false);
+        evaluate.setDisable(true);
 
+        relations.setAlignment(Pos.CENTER);
+        relations.setPrefSize(150, 25);
+//        relations.setDisable(true);
 
         //Actions
         create.setOnAction(event -> {
             evaluate.setDisable(false);
+            relations.setDisable(false);
             mainStage.setScene(createScene());
         });
         evaluate.setOnAction(event -> {
             mainStage.setScene(evaluateScene());
         });
-        VBox mainBox = new VBox(create, evaluate);
+        relations.setOnAction(event -> {
+            mainStage.setScene(relationScene());
+        });
+        VBox mainBox = new VBox(create, evaluate, relations);
         mainBox.setAlignment(Pos.CENTER);
         mainBox.setPadding(insets);
         mainBox.setSpacing(10);
@@ -127,11 +135,17 @@ public class Main extends Application {
         back.setLayoutX(10);
         back.setLayoutY(450);
         back.setOnAction(event -> {
+            b = new Expression(text_B.getText());
+            a = new Expression(text_A.getText());
+            if (text_A.getText().equals("") || text_B.getText().equals("")) {
+                evaluate.setDisable(true);
+                relations.setDisable(true);
+            }
             mainStage.setScene(mainScene);
         });
         Pane main = new Pane(mainBox, back);
 
-        Scene createScene = new Scene(main, 600, 500);
+        Scene createScene = new Scene(main, 640, 500);
         return createScene;
     }
 
@@ -196,8 +210,8 @@ public class Main extends Application {
                 first = b;
                 second = b;
             } else if (expressions.getValue().equals("B - A")) {
-                first = a;
-                second = b;
+                first = b;
+                second = a;
             }
             if (operations.getValue().equals("Intersection")) {
                 result = first.intersection(second);
@@ -221,5 +235,78 @@ public class Main extends Application {
         Pane main = new Pane(mainBox, back, resultText);
         Scene evaluateScene = new Scene(main, 700, 400);
         return evaluateScene;
+    }
+
+    private Scene relationScene() {
+        Expression first;
+        Expression second;
+        String result;
+        Label setLabel = new Label("Choose a Set");
+        setLabel.setAlignment(Pos.TOP_CENTER);
+
+        ComboBox<String> sets = new ComboBox<>();
+        sets.setPrefHeight(25);
+        sets.setPrefWidth(200);
+        sets.getItems().add("A");
+        sets.getItems().add("B");
+
+        sets.getItems().add("A intersection B");
+        sets.getItems().add("A union B");
+        sets.getItems().add("A subtract B");
+
+        sets.getItems().add("B intersection A");
+        sets.getItems().add("B union A");
+        sets.getItems().add("B subtract A");
+
+        Button done = new Button("Done");
+        done.setPrefSize(75, 25);
+        done.setAlignment(Pos.CENTER);
+        done.setDisable(true);
+
+        VBox setsBox = new VBox();
+        setsBox.setAlignment(Pos.CENTER);
+        setsBox.setSpacing(10);
+        setsBox.setPadding(insets);
+
+        TextArea resultText = new TextArea();
+        resultText.setPrefRowCount(10);
+        resultText.setPrefColumnCount(10);
+        resultText.setPrefSize(50, 50);
+        resultText.setEditable(false);
+
+        setsBox.getChildren().addAll(setLabel, sets, done, resultText);
+        setsBox.setLayoutX(100);
+        setsBox.setLayoutY(80);
+
+        //Actions
+        sets.setOnAction(event -> {
+            if (!sets.getSelectionModel().isEmpty())
+                done.setDisable(false);
+        });
+
+        done.setOnAction(event -> {
+            if (sets.getValue().equals("A")) {
+
+            } else if (sets.getValue().equals("B")) {
+
+            } else if (sets.getValue().equals("A intersection B")) {
+
+            } else if (sets.getValue().equals("A union B")) {
+
+            } else if (sets.getValue().equals("A subtract B")) {
+
+            } else if (sets.getValue().equals("B intersection A")) {
+
+            } else if (sets.getValue().equals("B union A")) {
+
+            } else if (sets.getValue().equals("B subtract A")) {
+
+            }
+
+        });
+
+        Pane pane = new Pane(setsBox);
+        Scene relationScene = new Scene(pane, 400, 250);
+        return relationScene;
     }
 }
